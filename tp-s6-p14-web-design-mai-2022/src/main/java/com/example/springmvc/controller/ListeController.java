@@ -1,6 +1,7 @@
 package com.example.springmvc.controller;
 
 import com.example.springmvc.model.Contenu;
+import com.example.springmvc.service.CategorieService;
 import com.example.springmvc.service.ContenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +19,10 @@ import java.util.ArrayList;
 public class ListeController {
     @Autowired
     ContenuService contenuService;
+
+    @Autowired
+    CategorieService categorieService;
+
     @GetMapping("/liste_contenu")
     public ModelAndView afficherListe(@RequestParam(value = "limit", defaultValue = "2") int limit, @RequestParam(value = "offset", defaultValue = "0") int offset) throws Exception{
         ModelAndView modelAndView = new ModelAndView();
@@ -34,7 +39,9 @@ public class ListeController {
         ModelAndView modelAndView = new ModelAndView();
 //        int id = Integer.parseInt(request.getParameter("id"));
         Contenu contenu = (Contenu) contenuService.getContenuById(id);
+        String nomcategorie = categorieService.getNomCatgeorie(contenu.getIdcategorie());
         modelAndView.addObject("contenu", contenu);
+        modelAndView.addObject("nomCategorie", nomcategorie);
         modelAndView.setViewName("detail_contenu");
         return modelAndView;
     }

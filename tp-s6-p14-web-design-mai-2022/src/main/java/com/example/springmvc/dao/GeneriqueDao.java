@@ -797,4 +797,36 @@ public class GeneriqueDao {
         }
         return admin;
     }
+
+//    Fonction getNomCategorie
+    public String getNomCategorie(int id) throws Exception {
+        String nomcategorie = null;
+        String sql = null;
+        Connection con = null;
+        Statement st = null;
+        ResultSet res = null;
+
+        try {
+            con = new MyConnexion().getConnection();
+            st = con.createStatement();
+            sql = "SELECT nomcategorie FROM Categorie WHERE id="+id;
+            res = st.executeQuery(sql);
+            while (res.next()) {
+                nomcategorie = res.getString("nomcategorie");
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            if (st != null) {
+                st.close();
+            }
+            if (res != null) {
+                res.close();
+            }
+            if(con != null){
+                con.close();
+            }
+        }
+        return nomcategorie;
+    }
 }

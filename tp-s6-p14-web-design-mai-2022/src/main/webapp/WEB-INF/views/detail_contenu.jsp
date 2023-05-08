@@ -35,14 +35,14 @@
         String[] splits = contenu.getTitre().split(" ");
         String keys = "";
         for(int i = 0; i < splits.length; i++) {
-            keys += splits[i] + ",";
-            if (i == splits.length - 1){
-                keys.substring(1,0);
+            keys += splits[i];
+            if (i != splits.length - 1){
+                keys += ",";
             }
         }
     %>
 
-    <meta name="keywords" content="article, détail, XYZ">
+    <meta name="keywords" content="<%= keys %>">
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
     <!-- Nucleo Icons -->
@@ -249,7 +249,9 @@
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="d-flex flex-column h-100">
-                                    <h5 class="font-weight-bolder"><%= contenu.getTitre() %></h5>
+                                    <%--   Referencement    --%>
+                                    <h1 class="font-weight-bolder"><%= contenu.getTitre() %></h1>
+                                    <h2><%= request.getAttribute("nomCategorie") %></h2>
                                     <p class="mb-5"><%= contenu.getDescription() %></p>
                                 </div>
                             </div>

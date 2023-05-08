@@ -15,4 +15,9 @@ public class CategorieService {
     public ArrayList<Categorie> getAllCategorie() throws Exception {
         return generiqueDao.getAll(categorie);
     }
+
+//    GetNomcategorie
+    public String getNomCatgeorie(int id) throws Exception {
+        return generiqueDao.getNomCategorie(id);
+    }
 }
