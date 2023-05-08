@@ -32,7 +32,7 @@ public class MyConnexion {
 
         try {
             Class.forName("org.postgresql.Driver");
-            con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/final_web", "final_web", "final_web");
+            con = DriverManager.getConnection("jdbc:postgresql://containers-us-west-1.railway.app:6655/railway", "postgres", "onkBXlAQyjn8TrpwKrt0");
 
         } catch (ClassNotFoundException | SQLException e) {
             throw e;
